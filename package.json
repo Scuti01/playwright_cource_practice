@@ -1,10 +1,11 @@
 {
   "name": "playwright_practice",
   "version": "1.0.0",
-  "description": "Here is presented 10 test cases in playwright.",
+  "description": "Here are presented 10 test cases in playwright.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "allure": "allure serve"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "expect": "^29.3.1",
+    "allure-commandline": "^2.20.1",
+    "allure-playwright": "^2.0.0-beta.23",
     "playwright": "^1.29.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.29.1"
   }
 }
