@@ -1,0 +1,13 @@
+{
+    "recursive": true,
+    "require": [
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ],
+    "extension": [
+      ".spec.ts"
+    ],
+    "timeout": 10000,
+    "retries": 0,
+    "inline-diffs": true
+  }
