@@ -7,11 +7,11 @@ export default class MainPage {
     bannersLocator = '.blocks-promo';
     logoLocator = '.logo';
 
-    async checkBannersVisible(){
+    async verifyBannersVisible(){
         return await this.page.locator(this.bannersLocator).isVisible();
     }
 
-    async checkLogoVisible(){
+    async verifyLogoVisible(){
         return await this.page.locator(this.logoLocator).isVisible();
     }
 

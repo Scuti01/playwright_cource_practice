@@ -3,5 +3,9 @@
         "lastName": "TestLast",
         "email": "testmail589@gmail.com",
         "fakeEmail": "testmail@gmail.com",
-        "password": "testPass_1234"
+        "password": "testPass_1234",
+        "productItem": "Emma Leggings",
+        "productItemColor": "Red",
+        "productItemSize": "28"
+
 }

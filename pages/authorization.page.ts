@@ -4,24 +4,41 @@ export default class AuthorizationPage {
 
     constructor(public page: Page) {}
 
+    // account elements
     createAccountLocator = '.panel [href$="create/"]';
+    signInLocator = '.panel [href*="login"]';
     pageTitleLocator = '.page-title';
+    logOutMenu = '.panel .customer-welcome';
+    logOutBtn = `${this.logOutMenu} .authorization-link`;
+    welcomeUserText = '.header ul:first-of-type .logged-in';
+
+    // create account elements 
     firstNameInputField= '#firstname';
     lastNameInputField= '#lastname';
     emailInputField= '#email_address';
     passwordInputField= '#password';
     passwordConfirmInputField= '#password-confirmation';
     createAccountBtn = '//button/span[text()="Create an Account"]';
-    welcomeUserText = '.header ul:first-of-type .logged-in';
-    logOutMenu = '.panel .customer-welcome';
-    logOutBtn = `${this.logOutMenu} .authorization-link`;
+    
+    // login elements
+    signInEmailField = '#email';
+    signInPasswordField = '#pass';
+    signInBtn = '#send2';
 
     async clickCreateAccountLink(){
         await this.page.click(this.createAccountLocator);
     }
 
+    async clickSignInLink(){
+        await this.page.click(this.signInLocator);
+    }
+
     async clickCreateAccountBtn(){
         await this.page.click(this.createAccountBtn);
+    }
+
+    async clickSignInBtn(){
+        await this.page.click(this.signInBtn);
     }
 
     async clickLogOutBtn(){
@@ -30,12 +47,12 @@ export default class AuthorizationPage {
     }
 
     async getPageTitleText(){
-        const locator = await this.page.locator(this.pageTitleLocator);
+        const locator = this.page.locator(this.pageTitleLocator);
         return await locator.innerText();
     }
 
     async getWelcomeUserText(){
-        const locator = await this.page.locator(this.welcomeUserText);
+        const locator = this.page.locator(this.welcomeUserText);
         return await locator.innerText();
     }
 
@@ -49,6 +66,14 @@ export default class AuthorizationPage {
 
     async fillEmailInputField(email:string){
         await this.page.locator(this.emailInputField).type(email);
+    }
+
+    async fillSignInEmailField(email:string){
+        await this.page.locator(this.signInEmailField).type(email);
+    }
+
+    async fillSignInPasswordField(password:string){
+        await this.page.locator(this.signInPasswordField).type(password);
     }
 
     async fillPasswordInputField(password:string){
