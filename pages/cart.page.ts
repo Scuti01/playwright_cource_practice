@@ -4,9 +4,9 @@ export default class CartPage {
 
     constructor(public page: Page) {}
 
-    cartIconLocator = '.showcart';
-    openCartLink = '//span[normalize-space()="View and Edit Cart"]';
-    productItemSizeColor = '(//dt[contains(text(),"Size")])[2]/following-sibling::dd';
+    cartIconLocator: string = '.showcart';
+    openCartLink: string = '//span[normalize-space()="View and Edit Cart"]';
+    productItemSizeColor: string = '(//dt[contains(text(),"Size")])[2]/following-sibling::dd';
 
     async openCartPage() {
         await this.page.click(this.cartIconLocator);
@@ -14,9 +14,9 @@ export default class CartPage {
         await this.page.waitForLoadState();
     }
 
-    async getProductItemSizeColor() {
+    async verifyProductItemSizeColor(productDetail:string[]) {
         await this.page.waitForSelector(this.productItemSizeColor);
-        return await this.page.locator(this.productItemSizeColor).allInnerTexts();
+        expect(await this.page.locator(this.productItemSizeColor).allInnerTexts()).toEqual(productDetail);
     }
 
 }
