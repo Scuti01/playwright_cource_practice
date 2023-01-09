@@ -82,13 +82,18 @@ export default class AuthorizationPage {
         await this.page.locator(this.passwordConfirmInputField).type(password);
     }
 
-    async setRandomMail(email: string, length: number){
+    setRandomNumber(length: number){
         let randomNumber: string = '';
         const numbers: string = '01234566789';
-        const emailList: string[] = email.split('@');
         for (let i = 0; i < length; i++) {
             randomNumber += numbers[Math.floor(Math.random() * numbers.length)];
         }
+        return randomNumber;
+    }
+
+    setRandomMail(email: string, length: number){
+        const emailList: string[] = email.split('@');
+        let randomNumber = this.setRandomNumber(length)
         return emailList.join(`${randomNumber}@`);
     }
 }

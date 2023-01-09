@@ -33,13 +33,13 @@ export default class ProductPage {
     async verifyMoreInformationVisible() {
         await this.page.click(this.moreInformationTab);
         await this.page.waitForSelector(this.moreInformationBlock);
-        expect(await this.page.locator(this.moreInformationBlock).isVisible()).toBe(true);
+        await expect(this.page.locator(this.moreInformationBlock)).toBeVisible();
     }
 
     async verifyReviewsVisible() {
         await this.page.click(this.reviewsTab);
         await this.page.waitForSelector(this.reviewsBlock);
-        expect(await this.page.locator(this.reviewsBlock).isVisible()).toBe(true);
+        await expect(this.page.locator(this.reviewsBlock)).toBeVisible();
     }
 
 }

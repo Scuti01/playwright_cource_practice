@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-type testData= {
+type testData = {
     firstName: string;
     lastName: string;
     email: string;
@@ -9,13 +9,13 @@ type testData= {
     productItem: string;
     productItemColor: string;
     productItemSize: string;
-    getRandomNumber(length:number): string;
-    setRandomMail(email: string, length:number): string;
+    randomNumber: (length:number) => string;
+    randomMail: (email: string, length:number) => string;
 
 }
 
 
-const data: testData ={
+const data:testData = {
 
     firstName: 'TestName',
     lastName:'TestLast',
@@ -26,23 +26,25 @@ const data: testData ={
     productItemColor: 'Red',
     productItemSize: '28',
 
-    getRandomNumber(length) {
-        let randomNumber = '';
-        const numbers = '01234566789';
-        for (let i = 0; i < length; i++) {
-            randomNumber += numbers[Math.floor(Math.random() * numbers.length)];
-        }
-        return randomNumber;
-    },
+    randomNumber: getRandomNumber,
 
-    setRandomMail(email, length){
-        const randomNumber = this.getRandomNumber(length);
-        const emailList = email.split('@');
-        return emailList.join(`${randomNumber}@`);
-    }
+    randomMail: setRandomMail,
 
 }
 
+function getRandomNumber(length:number):string {
+    let randomNumber:string = '';
+    const numbers:string = '01234566789';
+    for (let i = 0; i < length; i++) {
+        randomNumber += numbers[Math.floor(Math.random() * numbers.length)];
+    }
+    return randomNumber;
+}
+
+function setRandomMail(email:string, length:number):string {
+    const randomNumber = this.getRandomNumber(length);
+    const emailList:string[] = email.split('@');
+    return emailList.join(`${randomNumber}@`);
+}
+
 export default data;
-
-

@@ -8,11 +8,11 @@ export default class MainPage {
     logoLocator: string = '.logo';
 
     async verifyBannersAreVisible(){
-        expect(await this.page.locator(this.bannersLocator).isVisible()).toBe(true);
+        await expect(this.page.locator(this.bannersLocator)).toBeVisible();
     }
 
     async verifyLogoIsVisible(){
-        expect(await this.page.locator(this.logoLocator).isVisible()).toBe(true);
+        await expect(this.page.locator(this.logoLocator)).toBeVisible();
     }
 
 }
