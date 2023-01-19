@@ -1,0 +1,12 @@
+{
+        "firstName": "TestName",
+        "lastName": "TestLast",
+        "email": "testmail589@gmail.com",
+        "fakeEmail": "testmail@gmail.com",
+        "password": "testPass_1234",
+        "orderId":"000014423",
+        "productItem": "Emma Leggings",
+        "productItemColor": "Red",
+        "productItemSize": "28"
+
+}
