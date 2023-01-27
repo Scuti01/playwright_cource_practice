@@ -10,7 +10,7 @@ export default class CartPage {
     cartCountLocator: string = ".counter-number";
 
     async openCartPage() {
-        await this.page.click(this.cartIconLocator);
+        await this.page.click(this.cartIconLocator, {force: true});
         await this.page.click(this.openCartLink);
         await this.page.waitForLoadState();
     }

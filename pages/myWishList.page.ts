@@ -23,5 +23,4 @@ export default class MyWishListPage {
     async verifyNoItemsMessageIsVisible(isVisible: boolean = true) {
         await expect(this.page.locator(this.noItemsMessage)).toBeVisible({visible: isVisible});
     }
-
 }

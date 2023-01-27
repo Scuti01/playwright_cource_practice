@@ -10,5 +10,4 @@ export default class SalePage {
     async clickSidebarTeesBtn(){
         await this.page.click(this.sidebarTeesBtn);
     }
-
 }

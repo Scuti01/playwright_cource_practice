@@ -5,7 +5,7 @@ export default class BasePage {
     constructor(public page: Page) {}
 
     pageTitleLocator: string = ".page-title";
-    errorMessageLocator: string = "[role='alert'] div[data-ui-id]";
+    errorMessageLocator: string = "[role='alert']";
     searchInputField: string = "#search";
     searchResultsForLabelLocator: string = "[data-ui-id='page-title-wrapper']";
     sorterLocator: string = "#sorter";
