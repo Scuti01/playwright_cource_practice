@@ -7,9 +7,9 @@ export default class AuthorizationPage {
     // account elements
     createAccountLocator: string = '.panel [href$="create/"]';
     signInLocator: string = '.panel [href*="login"]';
-    pageTitleLocator: string = '.page-title';
-    logOutMenu: string = '.panel .customer-welcome';
-    logOutBtn: string = `${this.logOutMenu} .authorization-link`;
+    headerMenu: string = '.panel .customer-welcome';
+    logOutBtn: string = `${this.headerMenu} .authorization-link`;
+    myAccountBtn: string = `${this.headerMenu} li:first-child`;
     welcomeUserText: string = '.header ul:first-of-type .logged-in';
 
     // create account elements 
@@ -42,16 +42,18 @@ export default class AuthorizationPage {
     }
 
     async clickLogOutBtn(){
-        await this.page.click(this.logOutMenu);
+        await this.page.click(this.headerMenu);
         await this.page.click(this.logOutBtn);
     }
 
-    async verifyPageTitleText(text: string){
-        expect(await this.page.locator(this.pageTitleLocator).innerText()).toMatch(text);
+    async clickMyAccountBtn(){
+        await this.page.click(this.headerMenu);
+        await this.page.click(this.myAccountBtn);
     }
 
-    async verifyWelcomeUserText(text: string){
-        expect(await this.page.locator(this.welcomeUserText).innerText()).toMatch(text);
+    async verifyWelcomeUserText(userName: string, userLastName: string){
+        await this.page.waitForSelector(this.welcomeUserText);
+        expect(await this.page.locator(this.welcomeUserText).innerText()).toMatch(`Welcome, ${userName} ${userLastName}!`);
     }
 
     async fillFirstNameInputField(firstName: string){

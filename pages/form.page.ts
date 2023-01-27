@@ -9,7 +9,6 @@ export default class FormPage {
     findOrderByField:string = '#quick-search-type-id';
     emailField: string =  '#oar_email';
     continueBtn: string = '[title="Continue"] span';
-    errorMessageLocator:string = '[role="alert"] div div';
 
     async fillOrderIdField(id: string){
         await this.page.locator(this.orderIdField).type(id);
@@ -29,10 +28,5 @@ export default class FormPage {
 
     async clickContinueBtn(){
         await this.page.click(this.continueBtn);
-    }
-
-    async verifyErrorMessageOnInvalidOrder(errorMessage:string) {
-        await this.page.waitForSelector(this.errorMessageLocator);
-        expect(await this.page.locator(this.errorMessageLocator).innerText()).toMatch(errorMessage);
     }
 }

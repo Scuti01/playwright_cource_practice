@@ -4,17 +4,41 @@ export default class ProductPage {
 
     constructor(public page: Page) {}
 
-    productItemLocator(name: string) { return `img[alt='${name}']`};
-    productItemColor(color: string) {return `[attribute-code="color"] [option-label="${color[0].toUpperCase() + color.slice(1)}"]`};
-    productItemSize(size: string) {return `[attribute-code="size"] [option-label="${size.toUpperCase()}"]`};
     moreInformationTab: string = '#tab-label-additional-title';
     moreInformationBlock: string = '#product-attribute-specs-table';
     reviewsTab: string = '#tab-label-reviews';
     reviewsBlock: string = '#reviews';
     addToCartBtn: string = '#product-addtocart-button';
-    addedProductToCartAlert: string = '[role="alert"]'; 
+    addedProductToCartAlert: string = '[role="alert"]';
+    addToWishListBtn: string = "a[data-action='add-to-wishlist']";
+    productPriceLocator: string = ".product-info-main .price";
+    productNameLocator: string = ".product-info-main .base";
+    productImagesLocator: string = ".fotorama__stage img";
 
-    async selectProductItem(name:string) {
+    async getProductInformation(): Promise<{ productName: string | null, productPrice: string | null, productImg: string[]}> {
+        const name = await this.page.locator(this.productNameLocator).textContent();
+        const price = await this.page.locator(this.productPriceLocator).textContent();
+        let imagesElements = this.page.locator(this.productImagesLocator).elementHandles;
+        let images: string[] = [];
+        for (let i = 0; i < imagesElements.length; i++) {
+            images.push(imagesElements[i].getAttribute("src"));
+        }
+        return { productName: name, productPrice: price, productImg: images};
+    }
+    
+    productItemLocator(name: string) { 
+        return `//*[contains(@class, 'product-item-name') and contains(., '${name}')]`;
+    };
+
+    productItemColor(color: string) {
+        return `[attribute-code="color"] [option-label="${color[0].toUpperCase() + color.slice(1)}"]`;
+    };
+
+    productItemSize(size: string) {
+        return `[attribute-code="size"] [option-label="${size.toUpperCase()}"]`;
+    };
+
+    async selectProductItem(name: string) {
         await this.page.click(this.productItemLocator(name));
     }
 
@@ -30,6 +54,10 @@ export default class ProductPage {
         await this.page.click(this.addToCartBtn);
     }
 
+    async clickAddToWishListBtn() {
+        await this.page.click(this.addToWishListBtn);
+    }
+
     async verifyMoreInformationVisible() {
         await this.page.click(this.moreInformationTab);
         await this.page.waitForSelector(this.moreInformationBlock);
@@ -42,4 +70,23 @@ export default class ProductPage {
         await expect(this.page.locator(this.reviewsBlock)).toBeVisible();
     }
 
+    async verifyProductName(productName: string) {
+        expect(await this.page.locator(this.productNameLocator).innerText()).toMatch(productName);
+    }
+
+    async verifyProductPrice(productPrice: string) {
+        expect(await this.page.locator(this.productPriceLocator).innerText()).toMatch(productPrice);
+    }
+
+    async verifyProductImages(productImg: string[]) {
+        let imagesElements = this.page.locator(this.productImagesLocator).elementHandles;
+        let images: string[] = [];
+        for (let i = 0; i < imagesElements.length; i++) {
+            images.push(imagesElements[i].getAttribute("src"));
+        }
+
+        for (let i = 0; i < images.length; i++) {
+            expect(images[i]).toEqual(productImg[i]);
+        }
+    }
 }

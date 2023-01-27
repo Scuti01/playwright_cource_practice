@@ -7,6 +7,7 @@ export default class CartPage {
     cartIconLocator: string = '.showcart';
     openCartLink: string = '//span[normalize-space()="View and Edit Cart"]';
     productItemSizeColor: string = '(//dt[contains(text(),"Size")])[2]/following-sibling::dd';
+    cartCountLocator: string = ".counter-number";
 
     async openCartPage() {
         await this.page.click(this.cartIconLocator);
