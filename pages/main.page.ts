@@ -14,5 +14,4 @@ export default class MainPage {
     async verifyLogoIsVisible(){
         await expect(this.page.locator(this.logoLocator)).toBeVisible();
     }
-
 }

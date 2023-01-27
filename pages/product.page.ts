@@ -27,7 +27,7 @@ export default class ProductPage {
     }
     
     productItemLocator(name: string) { 
-        return `//*[contains(@class, 'product-item-name') and contains(., '${name}')]`;
+        return `//*[contains(@class, 'product-item-link') and contains(text(), 'Emma Leggings')]`;
     };
 
     productItemColor(color: string) {

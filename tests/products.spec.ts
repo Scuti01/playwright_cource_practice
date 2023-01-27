@@ -61,12 +61,12 @@ test.describe('Products tests for mageto web site', () => {
     await basePage.sortByValue(sortValues.price);
     await basePage.setSortingDirection(sortingDirections.ascending);
     await basePage.clickFirstProductItem();
-    await productPage.selectProductItemColor(colors.black);
+    await productPage.selectProductItemColor(colors.green);
     await productPage.selectProductItemSize(letterSizes.Lsize);
     await productPage.clickAddToCartBtn();
     await page.waitForSelector(productPage.addedProductToCartAlert);
     await cartPage.openCartPage();
-    await cartPage.verifyProductItemSizeColor([letterSizes.Lsize, colors.black]);
+    await cartPage.verifyProductItemSizeColor([letterSizes.Lsize, colors.green]);
   });
 
   test('User should be able to sort items by product name and price in descending and ascending directions', async ({ page, basePage }) => {

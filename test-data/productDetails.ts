@@ -1,5 +1,6 @@
 export const colors = {
     red: "Red",
+    green: "Green",
     black: "Black",
     blue: "Blue"
 };

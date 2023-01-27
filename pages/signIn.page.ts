@@ -21,5 +21,4 @@ export default class SignInPage {
     async clickSignInBtn(){
         await this.page.click(this.signInButton);
     }
-
 }

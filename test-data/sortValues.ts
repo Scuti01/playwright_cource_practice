@@ -8,4 +8,3 @@ export const sortingDirections = {
     ascending: "asc",
     descending: "desc"
 };
-
