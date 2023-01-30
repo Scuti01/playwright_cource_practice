@@ -1,10 +1,10 @@
 export const sortValues = {
-    position: "position",
-    price: "price",
-    productName: "name"
+  position: 'position',
+  price: 'price',
+  productName: 'name',
 };
 
 export const sortingDirections = {
-    ascending: "asc",
-    descending: "desc"
+  ascending: 'asc',
+  descending: 'desc',
 };
