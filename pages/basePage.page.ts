@@ -43,7 +43,8 @@ export default class BasePage {
   async sortByValue(value: string) {
     await this.page.waitForLoadState('domcontentloaded');
     await this.page.waitForSelector(this.sorterLocator);
-    await this.page.locator(this.sorterLocator).first().selectOption(value);
+    // todo: replace it when issue with 2 identical blocks will be fixed 
+    await this.page.getByRole('combobox', { name: 'Sort By' }).selectOption(value);
     await this.page.waitForLoadState('domcontentloaded');
   }
 
